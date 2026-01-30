@@ -46,7 +46,6 @@ BETTERAUTH_CLIENT_ID=votre_google_client_id
 BETTERAUTH_CLIENT_SECRET=votre_google_client_secret
 BETTERAUTH_REDIRECT_URI=http://localhost:3000/callback
 ```
-```
 
 ## Remerciements
 
