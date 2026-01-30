@@ -24,10 +24,13 @@ EXOLT est un bot Discord qui se connecte à une boîte mail via IMAP et envoie d
 ## Technologies Utilisées
 
 - **Node.js** avec TypeScript
-- **Discord.js** - Interaction avec Discord
+- **Discord.js** - Interaction avec L'API Discord
 - **IMAP / ImapFlow** - Connexion aux serveurs email
 - **MailParser** - Analyse des emails
 - **Better Auth** - Système d'authentification
+- **pnpm** - Gestionnaire de paquets
+- **ts-node** - Exécution TypeScript
+- **Prettier** - Formatage du code
 - **dotenv** - Gestion des variables d'environnement
 
 ## Configuration
