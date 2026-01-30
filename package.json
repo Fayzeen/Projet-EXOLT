@@ -1,7 +1,6 @@
 {
   "name": "exolt",
   "version": "1.0.0",
-  "description": "Send your mail on Discord with Exolt",
   "main": "index.ts",
   "type": "module",
   "scripts": {
@@ -10,8 +9,7 @@
     "auth": "npm run build && node dist/auth/authenticate.js",
     "format": "prettier --write \"src/**/*.ts\""
   },
-  "author": "stomp",
-  "license": "MIT",
+  "author": "fayzeen",
   "dependencies": {
     "@types/imap": "^0.8.42",
     "better-auth": "^1.4.1",
