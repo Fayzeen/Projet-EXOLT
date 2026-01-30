@@ -38,9 +38,14 @@ EXOLT est un bot Discord qui se connecte à une boîte mail via IMAP et envoie d
 Créez un fichier `.env` à la racine du projet avec les informations suivantes :
 ```env
 DISCORD_TOKEN=votre_token_discord
-IMAP_USER=votre_email
-IMAP_PASSWORD=votre_mot_de_passe
-IMAP_HOST=imap.votre-serveur.com
+DISCORD_CLIENT_ID=votre_client_id
+DISCORD_GUILD_ID=votre_serveur_id
+DISCORD_CHANNEL_ID=votre_salon_id
+
+BETTERAUTH_CLIENT_ID=votre_google_client_id
+BETTERAUTH_CLIENT_SECRET=votre_google_client_secret
+BETTERAUTH_REDIRECT_URI=http://localhost:3000/callback
+```
 ```
 
 ## Remerciements
