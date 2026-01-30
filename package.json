@@ -1,0 +1,30 @@
+{
+  "name": "exolt",
+  "version": "1.0.0",
+  "description": "Send your mail on Discord with Exolt",
+  "main": "index.ts",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "start": "npm run build && node dist/index.js",
+    "auth": "npm run build && node dist/auth/authenticate.js",
+    "format": "prettier --write \"src/**/*.ts\""
+  },
+  "author": "stomp",
+  "license": "MIT",
+  "dependencies": {
+    "@types/imap": "^0.8.42",
+    "better-auth": "^1.4.1",
+    "discord.js": "^14.25.1",
+    "dotenv": "^17.2.3",
+    "imap": "^0.8.19",
+    "imapflow": "^1.1.1",
+    "mailparser": "^3.9.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.25",
+    "prettier": "^3.6.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  }
+}
