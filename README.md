@@ -48,4 +48,5 @@ Je tiens à remercier chaleureusement tous les développeurs qui m'ont aidé et 
 ---
 
 **Note** : Ce projet est un work-in-progress et certaines fonctionnalités peuvent ne pas être stables ou complètes.
+
 **Mon discord** : thefayz (si vous souhaitez m'aider sur le projet) 
