@@ -1,4 +1,4 @@
-export const botConfig = {
+export const Config = {
   language: "fr",
   filter: {
     active: null as string | null,

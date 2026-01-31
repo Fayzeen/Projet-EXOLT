@@ -5,7 +5,7 @@ import {
   StringSelectMenuBuilder,
   StringSelectMenuOptionBuilder,
 } from "discord.js";
-import { botConfig } from "../config.js";
+import { Config } from "../config.js";
 
 export function buildFilterSelectMenu() {
   return [
@@ -14,7 +14,7 @@ export function buildFilterSelectMenu() {
         .setCustomId("config-filter-select")
         .setPlaceholder("Sélectionner un filtre")
         .addOptions(
-          botConfig.filter.options.map((opt) =>
+          Config.filter.options.map((opt) =>
             new StringSelectMenuOptionBuilder()
               .setLabel(opt.label)
               .setValue(opt.value)

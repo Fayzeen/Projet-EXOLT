@@ -12,7 +12,9 @@ import {
   StringSelectMenuOptionBuilder,
   ActionRowBuilder,
 } from "discord.js";
-import { botConfig } from "../config.js";
+import { Config } from "../config.js";
+
+const config = Config;
 
 export function buildMainMenu(showFilterMenu: boolean = false) {
   const container = new ContainerBuilder()
@@ -33,8 +35,8 @@ export function buildMainMenu(showFilterMenu: boolean = false) {
         .addTextDisplayComponents(
           new TextDisplayBuilder().setContent(
             `**Filtre actif**\n${
-              botConfig.filter.active
-                ? `\`${botConfig.filter.active}\``
+              config.filter.active
+                ? `\`${config.filter.active}\``
                 : "Aucun filtre sélectionné"
             }`,
           ),
@@ -50,8 +52,8 @@ export function buildMainMenu(showFilterMenu: boolean = false) {
     container.addTextDisplayComponents(
       new TextDisplayBuilder().setContent(
         `**Filtre actif**\n${
-          botConfig.filter.active
-            ? `\`${botConfig.filter.active}\``
+          config.filter.active
+            ? `\`${config.filter.active}\``
             : "Aucun filtre sélectionné"
         }`,
       ),
@@ -99,7 +101,7 @@ export function buildMainMenu(showFilterMenu: boolean = false) {
       new SectionBuilder()
         .addTextDisplayComponents(
           new TextDisplayBuilder().setContent(
-            `**Langue**\n\`${botConfig.language}\``,
+            `**Langue**\n\`${config.language}\``,
           ),
         )
         .setButtonAccessory(

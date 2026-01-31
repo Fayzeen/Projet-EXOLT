@@ -14,7 +14,7 @@ import * as dotenv from "dotenv";
 import { fetchRecentEmails } from "./imap/fetcher.js";
 import { watchNewEmails } from "./imap/watcher.js";
 import { log, LogLevel } from "./utils/logger.js";
-import { botConfig } from "./commands/config/config.js";
+import { Config } from "./commands/config/config.js";
 import { buildMainMenu } from "./commands/config/builder/mainMenus.js";
 import { buildEmail } from "./mail/emailDisplay.js";
 
@@ -60,9 +60,9 @@ type Mail = {
 };
 
 async function sendEmailToDiscord(channel: TextChannel, mail: Mail) {
-  if (botConfig.filter.active) {
+  if (Config.filter.active) {
     const text = (mail.subject + " " + mail.text).toLowerCase();
-    if (!text.includes(botConfig.filter.active.toLowerCase())) return;
+    if (!text.includes(Config.filter.active.toLowerCase())) return;
   }
 
   await channel.send({
@@ -103,9 +103,9 @@ async function handleFilterSelect(interaction: StringSelectMenuInteraction) {
   const chosen = interaction.values[0];
 
   if (chosen === "reset") {
-    botConfig.filter.active = null;
+    Config.filter.active = null;
   } else {
-    botConfig.filter.active = chosen;
+    Config.filter.active = chosen;
   }
 
   const messageId = configMessages.get(interaction.user.id);
@@ -125,7 +125,7 @@ async function handleFilterSelect(interaction: StringSelectMenuInteraction) {
 }
 
 async function handleFilterReset(interaction: ButtonInteraction) {
-  botConfig.filter.active = null;
+  Config.filter.active = null;
 
   const messageId = configMessages.get(interaction.user.id);
   if (messageId && interaction.channel) {
