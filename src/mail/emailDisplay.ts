@@ -3,6 +3,9 @@ import {
   TextDisplayBuilder,
   SeparatorBuilder,
   SeparatorSpacingSize,
+  ButtonBuilder,
+  ButtonStyle,
+  SectionBuilder,
 } from "discord.js";
 
 type Mail = {
@@ -19,9 +22,7 @@ export function buildEmail(mail: Mail) {
   let content = mail.text?.trim() || "Aucun contenu disponible";
 
   content = content.replace(/https?:\/\/[^\s]+/g, "[lien]");
-
   content = content.replace(/\n{3,}/g, "\n\n");
-
   content = content.replace(/[ \t]+/g, " ");
 
   if (content.length > 800) {
@@ -44,8 +45,22 @@ export function buildEmail(mail: Mail) {
         .setSpacing(SeparatorSpacingSize.Small),
     )
 
-    .addTextDisplayComponents(
-      new TextDisplayBuilder().setContent(`**Expéditeur**\n${sender}`),
+    .addSectionComponents(
+      new SectionBuilder()
+        .setButtonAccessory(
+          new ButtonBuilder()
+            .setStyle(ButtonStyle.Secondary)
+            .setLabel("Accéder au mail")
+            .setEmoji({
+              id: "1467153015935865044",
+              name: "emoji",
+            })
+            .setDisabled(true)
+            .setCustomId("open_mail"),
+        )
+        .addTextDisplayComponents(
+          new TextDisplayBuilder().setContent(`**Expéditeur**\n${sender}`),
+        ),
     )
 
     .addTextDisplayComponents(
