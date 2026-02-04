@@ -160,7 +160,7 @@ client.once("ready", async () => {
   await deployCommands();
 
   client.user?.setPresence({
-    activities: [{ name: "les mails", type: ActivityType.Watching }],
+    activities: [{ name: "Regarde vos mails", type: ActivityType.Watching }],
     status: "online",
   });
 
