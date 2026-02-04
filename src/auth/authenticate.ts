@@ -2,7 +2,7 @@ import * as dotenv from "dotenv";
 import { saveTokens } from "./token.js";
 import { log, LogLevel } from "../utils/logger.js";
 import * as http from "http";
-import { parse } from "url";
+import { startWebServer } from "../web/server.js";
 
 dotenv.config();
 
@@ -51,29 +51,31 @@ async function authenticate() {
     },
   )}`;
 
-  log(LogLevel.INFO, "Démarrage du serveur local pour l'authentification...");
+  log(LogLevel.INFO, "Démarrage du serveur web et d'authentification...");
+  startWebServer();
 
   const server = http.createServer(async (req, res) => {
-    const parsedUrl = parse(req.url || "", true);
-    const code = parsedUrl.query.code as string;
-
-    if (!code) {
-      res.writeHead(400);
-      res.end();
-      return;
-    }
-
-    res.writeHead(200);
-    res.end();
-
     try {
+      const fullUrl = `http://localhost:3001${req.url || ""}`;
+      const url = new URL(fullUrl);
+      const code = url.searchParams.get("code");
+
+      if (!code) {
+        res.writeHead(400);
+        res.end("Code d'autorisation manquant");
+        return;
+      }
+
       log(LogLevel.INFO, "Code reçu");
 
       const tokens = await exchangeCodeForTokens(code);
       await saveTokens(tokens);
 
       log(LogLevel.INFO, "Authentification réussie...");
-      log(LogLevel.INFO, "Vous pouvez maintenant lancer EXOLT");
+      log(LogLevel.INFO, "Redirection vers la page de succès...");
+
+      res.writeHead(302, { Location: "http://localhost:3000/success" });
+      res.end();
 
       setTimeout(() => {
         server.close();
@@ -81,12 +83,14 @@ async function authenticate() {
       }, 500);
     } catch (error) {
       log(LogLevel.ERROR, "Erreur lors de l'authentification:", error);
+      res.writeHead(500);
+      res.end("Erreur lors de l'authentification");
       server.close();
       process.exit(1);
     }
   });
 
-  const port = new URL(redirectUri!).port || 3000;
+  const port = 3001;
   server.listen(port, () => {
     log(
       LogLevel.INFO,
