@@ -52,19 +52,19 @@ export function buildEmail(mail: Mail) {
             .setStyle(ButtonStyle.Secondary)
             .setLabel("Accéder au mail")
             .setEmoji({
-              id: "1467153015935865044",
-              name: "emoji",
+              id: "1469459532391383215",
+              name: "cancel",
             })
             .setDisabled(true)
             .setCustomId("open_mail"),
         )
         .addTextDisplayComponents(
-          new TextDisplayBuilder().setContent(`**Expéditeur**\n${sender}`),
+          new TextDisplayBuilder().setContent(`-# **EXPÉDITEUR**\n${sender}`),
         ),
     )
 
     .addTextDisplayComponents(
-      new TextDisplayBuilder().setContent(`**Reçu le**\n${date}`),
+      new TextDisplayBuilder().setContent(`-# **REÇU LE**\n${date}`),
     )
 
     .addSeparatorComponents(
@@ -75,12 +75,12 @@ export function buildEmail(mail: Mail) {
 
     .addTextDisplayComponents(
       new TextDisplayBuilder().setContent(
-        `**Message**\n\`\`\`\n${content}\n\`\`\``,
+        `-# **MESSAGE**\n\`\`\`\n${content}\n\`\`\``,
       ),
     )
 
     .addTextDisplayComponents(
-      new TextDisplayBuilder().setContent("*Exolt - Mails*"),
+      new TextDisplayBuilder().setContent("-# **Exolt - Mails**"),
     );
 
   return container;
